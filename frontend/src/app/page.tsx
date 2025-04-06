@@ -1,10 +1,11 @@
-import HeroHome from "@/components/sections/home/HeroHome";
-import Image from "next/image";
+import HeroHome from '@/components/sections/home/HeroHome';
+import FeaturesSection from '@/components/sections/home/FeaturesSection';
 
 export default function Home() {
   return (
-  <div>
-    <HeroHome/>
-  </div>
+    <main>
+      <HeroHome />
+      <FeaturesSection />
+    </main>
   );
 }
