@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  /* colors */
+  --color-primary: #002855; /* blue royal */
+  --color-secondary: #008060; /* vert émeraude */
+  --color-accent: #FFD700; /* jaune or */
+  --color-white: #FFFFFF; /* blanc */
+  --color-black: #000000; /* noir */
+
+  /* color-gradient */
+  --color-gradient: linear-gradient(135deg, #002855, #003366); /* Bleu royal à bleu sombre */
+  --color-gradient-secondary: linear-gradient(135deg, #008060, #00664D); /* Vert émeraude à vert clair */
+  --color-gradient-hero:  linear-gradient(135deg, #1E90FF, #00A67E); /* Bleu royal à vert émeraude */
+
+  /* font-family */
+  --font-display: CS Hovan Mono, Cs Holver, sans-serif; 
+  --font-body: Montserrat, sans-serif;
+  --font-mono: Roboto Mono, monospace;
+
+}
