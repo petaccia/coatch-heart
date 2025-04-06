@@ -11,7 +11,10 @@
   /* color-gradient */
   --color-gradient: linear-gradient(135deg, #002855, #003366); /* Bleu royal à bleu sombre */
   --color-gradient-secondary: linear-gradient(135deg, #008060, #00664D); /* Vert émeraude à vert clair */
-  --color-gradient-hero:  linear-gradient(135deg, #1E90FF, #00A67E); /* Bleu royal à vert émeraude */
+  --color-gradient-hero: linear-gradient(135deg, #1E90FF, #00A67E); /* Bleu royal à vert émeraude */
+  --color-gradient-primary: linear-gradient(135deg, var(--color-primary), #003366);
+  --color-gradient-accent: linear-gradient(135deg, var(--color-accent), #FFA500);
+  --color-gradient-secondary-alt: linear-gradient(135deg, var(--color-secondary), #006B4F);
 
   /* font-family */
   --font-display: CS Hovan Mono, Cs Holver, sans-serif; 
