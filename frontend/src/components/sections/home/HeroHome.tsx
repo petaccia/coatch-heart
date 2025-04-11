@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const HeroHome = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-r from-green-600/10 to-blue-500/10">
+    <section className="relative min-h-screen gradient-hero">
       {/* Background Pattern */}
 
       {/* Content Container */}
