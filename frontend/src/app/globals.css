@@ -1,23 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  /* colors */
+  /* colors blue */
   --color-primary: #002855; /* blue royal */
-  --color-secondary: #008060; /* vert émeraude */
-  --color-accent: #FFD700; /* jaune or */
-  --color-white: #FFFFFF; /* blanc */
-  --color-black: #000000; /* noir */
+  --color-blue500: oklch(62.3% 0.214 259.815);
 
+  /* colors green */
+  --color-secondary: #008060; /* vert émeraude */
+  --color-green600: oklch(62.7% 0.194 149.214);
+  --color-green500: oklch(72.3% 0.219 149.579);
+
+  /* colors yellow */
+  --color-accent: #FFD700; /* jaune or */
+  --color-yellow500: oklch(79.5% 0.184 86.047);
+
+  /* colors white */
+  --color-white: #FFFFFF; /* blanc */
+
+  /* colors black */
+  --color-h1: #101828; /* noir */
+
+  /* colors gray */
+  --color-p: #4a5565; /* gris */
+
+  /* colors red */
+  --color-red500: oklch(63.7% 0.237 25.331);
+
+
+  /* fonts */
   --font-heading: raleway, cursive;
   --font-display: montserrat, sans-serif;
   --font-body: inter, sans-serif;
   --font-mono: geistMono, monospace;
+}
 
+h1 {
+  @apply font-heading text-4xl sm:text-4xl md:text-5xl;
+}
+
+p {
+  @apply font-body text-xl text-p;
 }
 
 
-
-
 .gradient-hero {
-  @apply bg-gradient-to-r from-green-600/10 to-blue-500/10;
+  @apply bg-gradient-to-r from-green600/10 to-blue500/10;
 }

@@ -17,13 +17,13 @@ const HeroHome = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <h1 className="mb-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl md:text-6xl">
+            <h1 className="mb-6 font-bold text-h1">
               Simplifiez la préparation de vos{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green600 to-blue500">
                 séances d'entraînement
               </span>
             </h1>
-            <p className="mb-8 text-xl text-gray-600">
+            <p className="mb-8">
               Coach Heart vous aide à créer, organiser et partager vos séances d'entraînement de football en quelques clics.
             </p>
             
@@ -36,7 +36,7 @@ const HeroHome = () => {
             >
               <ul className="space-y-3">
                 <li className="flex items-center">
-                  <svg className="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-6 w-6 text-green500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Bibliothèque d'exercices personnalisables
