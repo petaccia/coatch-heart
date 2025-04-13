@@ -23,6 +23,8 @@
 }
 
 
+
+
 .gradient-hero {
   @apply bg-gradient-to-r from-green-600/10 to-blue-500/10;
 }
