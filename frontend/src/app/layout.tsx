@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Raleway } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
+import { Inter, Montserrat, Raleway, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar/DesktopNavbar";
 
@@ -38,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${inter.variable} ${montserrat.variable} ${raleway.variable} ${geistMono.variable} antialiased`}
       >
