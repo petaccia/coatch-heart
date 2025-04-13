@@ -8,17 +8,10 @@
   --color-white: #FFFFFF; /* blanc */
   --color-black: #000000; /* noir */
 
-  /* color-gradient */
-  --color-gradient: linear-gradient(135deg, #002855, #003366); /* Bleu royal à bleu sombre */
-  --color-gradient-secondary: linear-gradient(135deg, #008060, #00664D); /* Vert émeraude à vert clair */
-  --color-gradient-primary: linear-gradient(135deg, var(--color-primary), #003366);
-  --color-gradient-accent: linear-gradient(135deg, var(--color-accent), #FFA500);
-  --color-gradient-secondary-alt: linear-gradient(135deg, var(--color-secondary), #006B4F);
-
-  /* font-family */
-  --font-display: CS Hovan Mono, Cs Holver, sans-serif; 
-  --font-body: Montserrat, sans-serif;
-  --font-mono: Roboto Mono, monospace;
+  --font-heading: raleway, cursive;
+  --font-display: montserrat, sans-serif;
+  --font-body: inter, sans-serif;
+  --font-mono: geistMono, monospace;
 
 }
 
