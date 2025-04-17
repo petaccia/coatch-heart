@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat, Raleway, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar/DesktopNavbar";
+import Footer from "@/components/layout/footer";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -42,7 +43,10 @@ export default function RootLayout({
         className={`${inter.variable} ${montserrat.variable} ${raleway.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
