@@ -12,7 +12,7 @@
 
   /* colors yellow */
   --color-accent: #FFD700; /* jaune or */
-  --color-yellow500: oklch(79.5% 0.184 86.047);
+  --color-accent-dark: oklch(79.5% 0.184 86.047);
 
   /* colors white */
   --color-white: #FFFFFF; /* blanc */
@@ -42,6 +42,9 @@ p {
   @apply font-body text-xl text-p;
 }
 
+.gradient {
+  @apply bg-gradient-to-r from-primary to-secondary;
+}
 
 .gradient-hero {
   @apply bg-gradient-to-r from-green600/10 to-blue500/10;

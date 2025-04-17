@@ -15,14 +15,14 @@ export const steps: Step[] = [
     title: "Créez votre compte",
     description: "Inscrivez-vous gratuitement et configurez votre profil d'entraîneur en quelques clics",
     Icon: HiUserAdd,
-    color: "from-primary to-primary-dark"
+    color: "from-primary to-blue500"
   },
   {
     id: 2,
     title: "Choisissez vos exercices",
     description: "Parcourez notre bibliothèque d'exercices ou créez les vôtres selon vos besoins",
     Icon: HiClipboardList,
-    color: "from-secondary to-secondary-dark"
+    color: "from-secondary to-green600"
   },
   {
     id: 3,
