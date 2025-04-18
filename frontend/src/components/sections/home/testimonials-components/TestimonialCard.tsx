@@ -16,28 +16,28 @@ const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-2xl shadow-xl p-8 mx-12 max-w-2xl border-2 border-primary/10"
+      className="bg-white rounded-lg sm:rounded-2xl shadow-lg sm:shadow-xl p-5 sm:p-8 mx-4 sm:mx-8 md:mx-12 max-w-2xl border-2 border-primary/10 hover-shadow"
     >
-      <div className="flex items-center mb-6">
-        <div className="relative w-16 h-16 mr-4">
+      <div className="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-6">
+        <div className="relative w-12 h-12 sm:w-16 sm:h-16 mr-3 sm:mr-4 mb-3 sm:mb-0 mx-auto sm:mx-0">
           <Image
             src={testimonial.image}
             alt={testimonial.name}
             fill
-            className="rounded-full object-cover ring-4 ring-secondary/20"
+            className="rounded-full object-cover ring-2 sm:ring-4 ring-secondary/20"
           />
         </div>
-        <div>
-          <h3 className="text-xl font-semibold text-primary">
+        <div className="text-center sm:text-left">
+          <h3 className="text-lg sm:text-xl font-semibold text-primary">
             {testimonial.name}
           </h3>
-          <p className="text-secondary">{testimonial.role}</p>
+          <p className="text-sm sm:text-base text-secondary">{testimonial.role}</p>
         </div>
-        <div className="ml-auto flex">
+        <div className="ml-auto flex mt-3 sm:mt-0 justify-center sm:justify-start">
           {[...Array(testimonial.rating)].map((_, i) => (
             <svg
               key={i}
-              className="w-5 h-5 text-accent"
+              className="w-4 h-4 sm:w-5 sm:h-5 text-accent"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -46,7 +46,7 @@ const TestimonialCard = ({ testimonial, index }: TestimonialCardProps) => {
           ))}
         </div>
       </div>
-      <p className="text-gray-600 italic text-lg leading-relaxed">
+      <p className="text-gray-600 italic text-base sm:text-lg leading-relaxed mobile-text text-center sm:text-left">
         "{testimonial.content}"
       </p>
     </motion.div>

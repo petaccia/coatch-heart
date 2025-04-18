@@ -24,8 +24,8 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-20 gradient-hero">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 sm:py-16 md:py-20 gradient-hero">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
         <SectionTitle
           title="Ce qu'en disent nos utilisateurs"
           subtitle="Découvrez les retours d'expérience de nos coachs"
