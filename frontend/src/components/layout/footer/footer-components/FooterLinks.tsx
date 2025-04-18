@@ -16,7 +16,7 @@ const FooterLinks = ({ title, links }: FooterLinksProps) => {
       <ul className="space-y-2">
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="text-gray-200 hover:text-accent transition-colors">
+            <Link href={link.href} className="text-green500 hover:text-accent transition-colors">
               {link.label}
             </Link>
           </li>

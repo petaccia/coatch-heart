@@ -11,7 +11,7 @@ const LogoSection = () => {
         <Image src={logo} alt="Coach-Heart Logo" width={80} height={80} className="mr-2" />
         <span className="font-display text-2xl">Coach-Heart</span>
       </Link>
-      <p className="text-gray-200 mb-4">
+      <p className="!text-accent text-base mb-4">
         Simplifiez la préparation de vos séances d'entraînement de football avec notre plateforme intuitive.
       </p>
       <div className="flex space-x-4">
