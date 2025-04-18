@@ -90,7 +90,7 @@ const CtaSection = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+                    className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center cursor-pointer hover-shadow"
                   >
                     <svg className="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
@@ -99,8 +99,8 @@ const CtaSection = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-accent p-4 rounded-lg shadow-lg">
-              <p className="text-primary font-bold">Nouveau : Tableau tactique interactif !</p>
+            <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-accent p-3 sm:p-4 rounded-md sm:rounded-lg shadow-md sm:shadow-lg hover-scale-sm">
+              <p className="text-primary font-bold text-sm sm:text-base">Nouveau : Tableau tactique interactif !</p>
             </div>
           </motion.div>
         </div>
