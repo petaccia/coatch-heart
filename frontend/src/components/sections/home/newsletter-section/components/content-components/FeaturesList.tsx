@@ -21,7 +21,7 @@ const FeaturesList = ({ features, isMobile = false }: FeaturesListProps) => {
 
   return (
     <motion.div
-      className={`${isMobile ? 'flex flex-col items-center sm:items-start space-y-3' : 'flex flex-wrap gap-3 sm:gap-4'} mb-6 sm:mb-8`}
+      className={`${isMobile ? 'mobile-feature-list mobile-center' : 'flex flex-wrap gap-3 sm:gap-4'} mb-6 sm:mb-8`}
       aria-label="Avantages de la newsletter"
       variants={containerVariants}
       initial="hidden"

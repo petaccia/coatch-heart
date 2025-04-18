@@ -18,20 +18,21 @@ const FeatureCard = ({ feature, index }: FeatureCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.2 }}
       className="relative group"
     >
-      <div className="h-full bg-white rounded-2xl shadow-xl p-8 transition-transform duration-300 group-hover:-translate-y-2">
-        <div className={`w-14 h-14 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`}>
+      <div className="h-full bg-white rounded-lg sm:rounded-2xl shadow-lg sm:shadow-xl p-5 sm:p-8 hover-shadow button-transition group-hover:-translate-y-2">
+        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-md sm:rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 sm:mb-6 hover-scale-sm`}>
           <Image
             src={feature.icon}
             alt={feature.title}
-            width={32}
-            height={32}
+            width={28}
+            height={28}
+            sizes="(max-width: 640px) 28px, 32px"
             className="text-white"
           />
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-4">
           {feature.title}
         </h3>
-        <p className="text-gray-600">
+        <p className="mobile-text text-gray-600">
           {feature.description}
         </p>
       </div>

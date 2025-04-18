@@ -11,7 +11,7 @@ const ContentHeader = ({ title, description, isMobile = false }: ContentHeaderPr
   return (
     <>
       <motion.h2
-        className={`${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl'} font-bold text-white mb-4 sm:mb-4 ${isMobile ? 'mx-auto max-w-xs sm:max-w-sm md:max-w-md' : ''}`}
+        className={`${isMobile ? 'mobile-title' : 'text-3xl'} font-bold text-white ${isMobile ? 'mobile-max-width' : ''}`}
         initial={{ opacity: 0, y: isMobile ? -10 : -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -19,7 +19,7 @@ const ContentHeader = ({ title, description, isMobile = false }: ContentHeaderPr
         {title}
       </motion.h2>
       <motion.p
-        className={`!text-accent-dark ${isMobile ? '!text-base sm:!text-lg' : '!text-lg'} mb-6 sm:mb-6 ${isMobile ? 'mx-auto max-w-xs sm:max-w-sm md:max-w-md' : ''}`}
+        className={`!text-accent-dark ${isMobile ? 'mobile-subtitle' : '!text-lg mb-6'} ${isMobile ? 'mobile-max-width' : ''}`}
         initial={{ opacity: 0, y: isMobile ? -5 : -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}

@@ -47,13 +47,14 @@ const CtaSection = () => {
             <div className="mt-8 flex items-center">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+                  <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-primary overflow-hidden">
                     <Image
                       src={`/images/coach/coach${i}.jpg`}
                       alt={`Coach ${i}`}
-                      width={40}
-                      height={40}
-                      className="object-cover"
+                      width={32}
+                      height={32}
+                      sizes="(max-width: 640px) 32px, 40px"
+                      className="object-cover w-full h-full"
                     />
                   </div>
                 ))}
@@ -62,7 +63,7 @@ const CtaSection = () => {
                 <p className="font-semibold">Rejoint par +2000 entraîneurs</p>
                 <div className="flex items-center mt-1">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <svg key={i} className="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
@@ -90,7 +91,7 @@ const CtaSection = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+                    className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center cursor-pointer hover-shadow"
                   >
                     <svg className="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
@@ -99,8 +100,8 @@ const CtaSection = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-accent p-4 rounded-lg shadow-lg">
-              <p className="text-primary font-bold">Nouveau : Tableau tactique interactif !</p>
+            <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-accent p-3 sm:p-4 rounded-md sm:rounded-lg shadow-md sm:shadow-lg hover-scale-sm">
+              <p className="text-primary font-bold text-sm sm:text-base">Nouveau : Tableau tactique interactif !</p>
             </div>
           </motion.div>
         </div>

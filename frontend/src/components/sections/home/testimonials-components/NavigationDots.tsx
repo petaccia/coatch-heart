@@ -8,14 +8,14 @@ interface NavigationDotsProps {
 
 const NavigationDots = ({ total, currentIndex, onSelect }: NavigationDotsProps) => {
   return (
-    <div className="flex justify-center mt-8 space-x-2">
+    <div className="flex justify-center mt-6 sm:mt-8 space-x-1 sm:space-x-2">
       {[...Array(total)].map((_, index) => (
         <button
           key={index}
           onClick={() => onSelect(index)}
-          className={`w-3 h-3 rounded-full transition-all duration-200 ${
-            index === currentIndex 
-              ? 'bg-secondary scale-110' 
+          className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full button-transition ${
+            index === currentIndex
+              ? 'bg-secondary scale-110'
               : 'bg-secondary/20 hover:bg-secondary/40'
           }`}
         />
