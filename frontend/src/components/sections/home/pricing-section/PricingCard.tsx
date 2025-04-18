@@ -20,7 +20,10 @@ const PricingCard = ({ plan, index }: PricingCardProps) => {
       }`}
     >
       {plan.isPopular && (
-        <div className="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm font-semibold">
+        <div
+          className="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm font-semibold"
+          aria-label="Plan populaire"
+        >
           Populaire
         </div>
       )}
@@ -35,14 +38,15 @@ const PricingCard = ({ plan, index }: PricingCardProps) => {
       </div>
 
       <div className="p-6 flex-grow">
-        <ul className="space-y-4">
+        <ul className="space-y-4" aria-label={`Fonctionnalités incluses dans le plan ${plan.name}`}>
           {plan.features.map((feature) => (
             <li key={feature.id} className="flex items-start">
               {feature.included ? (
-                <FaCheck className="h-5 w-5 text-green-500 flex-shrink-0 mr-3" />
+                <FaCheck className="h-5 w-5 text-green-500 flex-shrink-0 mr-3" aria-hidden="true" />
               ) : (
-                <FaTimes className="h-5 w-5 text-gray-400 flex-shrink-0 mr-3" />
+                <FaTimes className="h-5 w-5 text-gray-400 flex-shrink-0 mr-3" aria-hidden="true" />
               )}
+              <span className="sr-only">{feature.included ? 'Inclus:' : 'Non inclus:'}</span>
               <span className={feature.included ? '!text-gray-900 !text-base' : '!text-gray-500 !text-base'}>
                 {feature.text}
               </span>
@@ -52,13 +56,16 @@ const PricingCard = ({ plan, index }: PricingCardProps) => {
       </div>
 
       <div className="p-6 pt-0">
-        <motion.button
+        <motion.a
+          href={`/signup?plan=${plan.name.toLowerCase()}`}
+          role="button"
+          aria-label={`${plan.buttonText} pour le plan ${plan.name}`}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
-          className={`w-full py-3 px-4 rounded-lg font-medium bg-gradient-to-r ${plan.color} hover:shadow-lg transition-all duration-300 ${plan.color.includes('accent') ? 'text-primary' : 'text-white'}`}
+          className={`w-full py-3 px-4 rounded-lg font-medium bg-gradient-to-r ${plan.color} hover:shadow-lg transition-all duration-300 ${plan.color.includes('accent') ? 'text-primary' : 'text-white'} flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary`}
         >
           {plan.buttonText}
-        </motion.button>
+        </motion.a>
       </div>
     </motion.div>
   );

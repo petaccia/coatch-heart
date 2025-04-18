@@ -14,7 +14,7 @@ const FaqSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+          <h2 id="faq-heading" className="text-3xl font-bold text-gray-900 sm:text-4xl">
             Questions fréquemment posées
           </h2>
           <p className="mt-4 text-xl text-gray-600">
@@ -29,7 +29,11 @@ const FaqSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="bg-white rounded-xl shadow-lg p-6 md:p-8"
         >
-          <div className="divide-y divide-gray-200">
+          <div
+            className="divide-y divide-gray-200"
+            role="group"
+            aria-labelledby="faq-heading"
+          >
             {faqData.map((item) => (
               <FaqItem
                 key={item.id}
@@ -52,7 +56,8 @@ const FaqSection = () => {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md transition-all duration-300"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            aria-label="Contactez-nous pour plus d'informations"
           >
             Contactez-nous
           </a>
