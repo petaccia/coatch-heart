@@ -6,18 +6,18 @@ import FaqItem from './FaqItem';
 const FaqSection = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 gradient-hero">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 mobile-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 sm:mb-12 mobile-text-center"
+          className="text-center mb-8 md:mb-12 mobile-text-center"
         >
           <h2 id="faq-heading" className="mobile-title font-bold text-gray-900">
             Questions fréquemment posées
           </h2>
-          <p className="mt-3 sm:mt-4 mobile-subtitle text-gray-600">
+          <p className="mt-3 md:mt-4 mobile-subtitle text-gray-600">
             Tout ce que vous devez savoir sur Coach Heart
           </p>
         </motion.div>
@@ -27,7 +27,7 @@ const FaqSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 mobile-container"
+          className="bg-white rounded-xl shadow-lg p-4 md:p-6 lg:p-8 mobile-container"
         >
           <div
             className="divide-y divide-gray-200"
@@ -49,9 +49,9 @@ const FaqSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-8 sm:mt-12 mobile-text-center"
+          className="text-center mt-8 md:mt-12 mobile-text-center"
         >
-          <p className="mobile-text text-gray-600 mb-4 sm:mb-6">
+          <p className="mobile-text text-gray-600 mb-4 md:mb-6">
             Vous avez d'autres questions ? N'hésitez pas à nous contacter.
           </p>
           <a

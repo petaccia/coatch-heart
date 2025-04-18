@@ -126,7 +126,7 @@ p {
   text-align: center;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-text-center {
     text-align: left;
   }
@@ -138,7 +138,7 @@ p {
   gap: 0.75rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-stack {
     flex-direction: row;
     gap: 1rem;
@@ -151,7 +151,7 @@ p {
   gap: 0.75rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-stack-reverse {
     flex-direction: row;
     gap: 1rem;
@@ -162,7 +162,7 @@ p {
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-full-width {
     width: auto;
   }
@@ -174,7 +174,7 @@ p {
   align-items: center;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-center {
     align-items: flex-start;
   }
@@ -184,7 +184,7 @@ p {
   margin-top: 1rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-space-y > * + * {
     margin-top: 0.5rem;
   }
@@ -195,7 +195,7 @@ p {
   height: 2rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -208,7 +208,7 @@ p {
   margin-right: auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-max-width {
     max-width: none;
     margin-left: 0;
@@ -227,7 +227,7 @@ p {
   margin-top: 0.75rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .mobile-feature-list {
     flex-direction: row;
     flex-wrap: wrap;
