@@ -1,15 +1,33 @@
 "use client";
+import { motion } from 'framer-motion';
+import { FaArrowRight } from 'react-icons/fa';
 
 const LearnMoreButton = () => {
   return (
-    <a
+    <motion.a
       href="/newsletter-info"
       role="button"
       className="flex-1 px-6 py-3 border border-white text-white font-medium rounded-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/50"
       aria-label="En savoir plus sur notre newsletter"
+      whileHover={{ scale: 1.03, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
-      En savoir plus
-    </a>
+      <motion.div
+        className="flex items-center justify-center"
+        initial={{ opacity: 1 }}
+      >
+        En savoir plus
+        <motion.span
+          className="ml-2 opacity-0"
+          initial={{ opacity: 0, x: -5 }}
+          whileHover={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <FaArrowRight aria-hidden="true" />
+        </motion.span>
+      </motion.div>
+    </motion.a>
   );
 };
 
