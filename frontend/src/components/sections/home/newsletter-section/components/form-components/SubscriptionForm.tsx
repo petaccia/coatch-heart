@@ -35,7 +35,7 @@ const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit, isM
   return (
     <motion.form
       onSubmit={handleSubmit}
-      className={`w-full ${isMobile ? 'text-center' : ''}`}
+      className={`mobile-full-width ${isMobile ? 'mobile-text-center' : ''}`}
       aria-labelledby="newsletter-form-title"
       variants={formVariants}
       initial="hidden"
@@ -52,7 +52,7 @@ const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit, isM
       </motion.div>
 
       <motion.div
-        className={`flex ${isMobile ? 'flex-col' : 'flex-col sm:flex-row'} gap-3 sm:gap-4`}
+        className={`${isMobile ? 'mobile-stack' : 'flex flex-col sm:flex-row gap-3 sm:gap-4'}`}
         variants={itemVariants}
       >
         <SubmitButton isLoading={isLoading} />
@@ -60,7 +60,7 @@ const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit, isM
       </motion.div>
 
       <motion.p
-        className={`mt-3 sm:mt-4 !text-white/70 !text-xs sm:!text-sm ${isMobile ? 'mx-auto max-w-xs sm:max-w-sm' : ''}`}
+        className={`mt-3 sm:mt-4 !text-white/70 mobile-text ${isMobile ? 'mobile-max-width' : ''}`}
         variants={itemVariants}
       >
         Nous respectons votre vie privée. Vous pouvez vous désinscrire à tout moment.
