@@ -7,6 +7,7 @@ import StatsSection from '@/components/sections/home/stats-section';
 import CtaSection from '@/components/sections/home/cta-section';
 import PartnersSection from '@/components/sections/home/partners-section';
 import BlogSection from '@/components/sections/home/blog-section';
+import PricingSection from '@/components/sections/home/pricing-section';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <CtaSection />
       <HowItWorksSection />
       <PartnersSection />
+      <PricingSection />
       <TestimonialsSection />
       <BlogSection />
       <FaqSection />
