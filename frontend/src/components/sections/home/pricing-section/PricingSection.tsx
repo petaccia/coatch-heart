@@ -5,7 +5,7 @@ import PricingCard from './PricingCard';
 
 const PricingSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-green600/5 to-blue500/5">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -6,7 +6,7 @@ import BlogCard from './BlogCard';
 
 const BlogSection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
           <motion.div
@@ -22,7 +22,7 @@ const BlogSection = () => {
               Conseils, astuces et actualités pour les entraîneurs
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

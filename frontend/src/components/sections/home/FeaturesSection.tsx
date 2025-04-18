@@ -7,7 +7,7 @@ import {
 
 const FeaturesSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-green-600/10 to-blue-500/10">
+    <section className="py-20 gradient-hero">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title="Tout ce dont vous avez besoin pour réussir"
