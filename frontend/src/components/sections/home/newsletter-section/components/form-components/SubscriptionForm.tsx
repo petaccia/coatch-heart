@@ -8,33 +8,34 @@ interface SubscriptionFormProps {
   error: string;
   isLoading: boolean;
   handleSubmit: (e: React.FormEvent) => void;
+  isMobile?: boolean;
 }
 
-const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit }: SubscriptionFormProps) => {
+const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit, isMobile = false }: SubscriptionFormProps) => {
   const formVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: isMobile ? 0.15 : 0.2,
+        delayChildren: isMobile ? 0.05 : 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
+      transition: { duration: isMobile ? 0.4 : 0.5 }
     }
   };
 
   return (
     <motion.form
       onSubmit={handleSubmit}
-      className="w-full"
+      className={`w-full ${isMobile ? 'text-center' : ''}`}
       aria-labelledby="newsletter-form-title"
       variants={formVariants}
       initial="hidden"
@@ -51,7 +52,7 @@ const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit }: S
       </motion.div>
 
       <motion.div
-        className="flex flex-col sm:flex-row gap-4"
+        className={`flex ${isMobile ? 'flex-col' : 'flex-col sm:flex-row'} gap-3 sm:gap-4`}
         variants={itemVariants}
       >
         <SubmitButton isLoading={isLoading} />
@@ -59,7 +60,7 @@ const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit }: S
       </motion.div>
 
       <motion.p
-        className="mt-4 !text-white/70 !text-sm"
+        className={`mt-3 sm:mt-4 !text-white/70 !text-xs sm:!text-sm ${isMobile ? 'mx-auto max-w-xs sm:max-w-sm' : ''}`}
         variants={itemVariants}
       >
         Nous respectons votre vie privée. Vous pouvez vous désinscrire à tout moment.
