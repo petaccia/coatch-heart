@@ -3,7 +3,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SubscriptionForm, SuccessMessage } from './form-components';
 
-const NewsletterForm = () => {
+interface NewsletterFormProps {
+  isMobile?: boolean;
+}
+
+const NewsletterForm = ({ isMobile = false }: NewsletterFormProps) => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,10 +34,10 @@ const NewsletterForm = () => {
 
   return (
     <motion.div
-      className="p-8 md:p-12 lg:p-16 bg-white/10 backdrop-blur-sm flex items-center"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 bg-white/10 backdrop-blur-sm flex items-center ${isMobile ? 'pb-10' : ''}`}
+      initial={{ opacity: 0, x: isMobile ? 0 : 20, y: isMobile ? 20 : 0 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ duration: 0.8, delay: isMobile ? 0 : 0.2 }}
     >
       <AnimatePresence mode="wait">
         {!isSubmitted ? (
@@ -41,7 +45,7 @@ const NewsletterForm = () => {
             key="form"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, x: -50 }}
+            exit={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? -50 : 0 }}
             transition={{ duration: 0.5 }}
             className="w-full"
           >
@@ -51,6 +55,7 @@ const NewsletterForm = () => {
               error={error}
               isLoading={isLoading}
               handleSubmit={handleSubmit}
+              isMobile={isMobile}
             />
           </motion.div>
         ) : (
@@ -66,7 +71,7 @@ const NewsletterForm = () => {
             }}
             className="w-full"
           >
-            <SuccessMessage />
+            <SuccessMessage isMobile={isMobile} />
           </motion.div>
         )}
       </AnimatePresence>
