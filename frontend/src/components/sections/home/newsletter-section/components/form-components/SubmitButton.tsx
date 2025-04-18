@@ -1,4 +1,5 @@
 "use client";
+import { motion } from 'framer-motion';
 import { FaPaperPlane } from 'react-icons/fa';
 
 interface SubmitButtonProps {
@@ -7,11 +8,14 @@ interface SubmitButtonProps {
 
 const SubmitButton = ({ isLoading }: SubmitButtonProps) => {
   return (
-    <button
+    <motion.button
       type="submit"
       disabled={isLoading}
       className="flex-1 px-6 py-3 bg-accent text-primary font-medium rounded-lg flex items-center justify-center hover:bg-accent-dark transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
       aria-label="S'inscrire à la newsletter"
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       {isLoading ? (
         <>
@@ -22,11 +26,22 @@ const SubmitButton = ({ isLoading }: SubmitButtonProps) => {
           <span className="sr-only">Chargement en cours...</span>
         </>
       ) : (
-        <>
-          S'inscrire <FaPaperPlane className="ml-2" aria-hidden="true" />
-        </>
+        <motion.div
+          className="flex items-center justify-center"
+          initial={{ opacity: 1 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          S'inscrire <motion.span
+            className="ml-2"
+            initial={{ x: 0 }}
+            whileHover={{ x: 3 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <FaPaperPlane aria-hidden="true" />
+          </motion.span>
+        </motion.div>
       )}
-    </button>
+    </motion.button>
   );
 };
 
