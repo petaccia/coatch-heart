@@ -10,7 +10,7 @@ const CTAButtons = () => {
         aria-label="Commencer à utiliser Coach Heart"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="rounded-full bg-gradient-to-r from-green-600 to-blue-500 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-lg hover:shadow-xl button-transition flex items-center justify-center focus-ring"
+        className="rounded-full bg-gradient-to-r from-primary to-secondary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-lg hover:shadow-xl button-transition flex items-center justify-center focus-ring"
       >
         Commencer maintenant
       </motion.a>
@@ -20,7 +20,7 @@ const CTAButtons = () => {
         aria-label="Voir une démonstration de Coach Heart"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="rounded-full border-2 border-green-600 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-green-600 hover:bg-green-50 button-transition flex items-center justify-center focus-ring"
+        className="rounded-full border-2 border-primary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-primary hover:bg-primary/10 button-transition flex items-center justify-center focus-ring"
       >
         Voir la démo
       </motion.a>

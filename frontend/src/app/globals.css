@@ -12,7 +12,7 @@
 
   /* colors yellow */
   --color-accent: #FFD700; /* jaune or */
-  --color-accent-dark: oklch(79.5% 0.184 86.047);
+  --color-accent-dark: #E6C200; /* jaune or foncé */
 
   /* colors white */
   --color-white: #FFFFFF; /* blanc */
