@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 const InteractivePreview = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2 }}
-      className="relative h-[350px] sm:h-[400px] md:h-[500px] w-full bg-white rounded-lg sm:rounded-xl shadow-xl sm:shadow-2xl p-2 sm:p-4 hover-shadow"
+      className="relative h-[280px] sm:h-[320px] md:h-[400px] w-full max-w-2xl mx-auto bg-white rounded-lg sm:rounded-xl shadow-xl sm:shadow-2xl p-2 sm:p-4 hover-shadow"
     >
       <div className="absolute top-0 left-0 right-0 h-8 sm:h-10 bg-gray-100 rounded-t-lg sm:rounded-t-xl flex items-center px-2 sm:px-4" aria-hidden="true">
         <div className="flex space-x-1 sm:space-x-2">

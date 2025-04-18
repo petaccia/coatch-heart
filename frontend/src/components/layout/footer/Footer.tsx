@@ -25,20 +25,24 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-primary to-secondary text-white pb-16 sm:pb-0">
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:py-10 md:py-12 sm:px-6 lg:px-8 mobile-container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <footer className="bg-gradient-to-br from-primary to-secondary text-white pb-16 lg:pb-0">
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-10 lg:py-12 md:px-6 lg:px-8 mobile-container">
+        <div className="grid grid-cols-1 gap-6 md:gap-8">
           {/* Logo and Description */}
           <LogoSection />
 
-          {/* Quick Links */}
-          <FooterLinks title="Liens rapides" links={quickLinks} />
+          {/* Links Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 
-          {/* Resources */}
-          <FooterLinks title="Ressources" links={resourceLinks} />
+            {/* Quick Links */}
+            <FooterLinks title="Liens rapides" links={quickLinks} />
 
-          {/* Legal */}
-          <FooterLinks title="Légal" links={legalLinks} />
+            {/* Resources */}
+            <FooterLinks title="Ressources" links={resourceLinks} />
+
+            {/* Legal */}
+            <FooterLinks title="Légal" links={legalLinks} />
+          </div>
         </div>
 
         {/* Bottom Bar */}

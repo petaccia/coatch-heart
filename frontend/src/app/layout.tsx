@@ -42,7 +42,7 @@ export default function RootLayout({
         className={`${inter.variable} ${montserrat.variable} ${raleway.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <main className="min-h-screen pt-0 sm:pt-16 pb-16 sm:pb-0">
+        <main className="min-h-screen pt-0 lg:pt-16 pb-16 lg:pb-0">
           {children}
         </main>
         <Footer />

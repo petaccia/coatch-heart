@@ -30,7 +30,7 @@ const DesktopNavbar = () => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 hidden sm:block transition-all duration-300 backdrop-blur-sm ${
+      className={`fixed top-0 left-0 right-0 z-50 hidden lg:block transition-all duration-300 backdrop-blur-sm ${
         isScrolled ? 'bg-gradient-to-r from-primary/90 to-secondary/90 shadow-md py-2' : 'bg-gradient-to-r from-primary/80 to-secondary/80 py-4'
       }`}
       initial={{ y: -100 }}

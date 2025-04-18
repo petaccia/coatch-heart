@@ -19,7 +19,7 @@ const MobileNavbar = () => {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-primary to-secondary shadow-lg sm:hidden z-50 backdrop-blur-sm bg-opacity-90"
+      className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-primary to-secondary shadow-lg lg:hidden z-50 backdrop-blur-sm bg-opacity-90"
     >
       <div className="flex justify-around items-center h-16 relative">
         {navItems.map((item) => {
