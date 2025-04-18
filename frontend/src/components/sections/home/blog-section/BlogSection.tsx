@@ -18,7 +18,7 @@ const BlogSection = () => {
             <h2 className="mobile-title font-bold text-gray-900 mobile-text-center md:text-left">
               Derniers articles
             </h2>
-            <p className="mt-3 sm:mt-4 mobile-subtitle text-gray-600 mobile-text-center md:text-left">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-600 mobile-text-center md:text-left">
               Conseils, astuces et actualités pour les entraîneurs
             </p>
           </motion.div>

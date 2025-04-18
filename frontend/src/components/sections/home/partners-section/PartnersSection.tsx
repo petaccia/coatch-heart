@@ -17,7 +17,7 @@ const PartnersSection = () => {
           <h2 className="mobile-title font-bold text-gray-900">
             Ils nous font confiance
           </h2>
-          <p className="mt-3 sm:mt-4 mobile-subtitle text-gray-600">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-600">
             Coach Heart est utilisé par les plus grands clubs et organisations
           </p>
         </motion.div>
