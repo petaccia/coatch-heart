@@ -38,18 +38,11 @@ const MobileNavbar = () => {
               <div className={`relative p-1 rounded-full ${isActive ? 'bg-white/20' : ''}`}>
                 {item.icon}
                 {isActive && (
-                  <>
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full"
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div
-                      layoutId="activeIndicatorTop"
-                      className="absolute -top-[22px] left-1/2 transform -translate-x-1/2 w-10 h-1 bg-white rounded-full"
-                      transition={{ duration: 0.3 }}
-                    />
-                  </>
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rounded-full animate-pulse shadow-glow"
+                    transition={{ duration: 0.3 }}
+                  />
                 )}
               </div>
               <span className="text-xs mt-1 font-medium">{item.label}</span>

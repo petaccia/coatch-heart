@@ -5,7 +5,7 @@ const BottomBar = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="border-t border-white/20 mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center mobile-text-center md:text-left">
+    <div className="border-t border-white/20 mt-8 sm:mt-10 md:mt-12 pt-6 pb-4 sm:pb-0 sm:pt-8 flex flex-col md:flex-row justify-between items-center mobile-text-center md:text-left">
       <p className="!text-accent-dark text-xs sm:text-sm">
         &copy; {currentYear} Coach-Heart. Tous droits réservés.
       </p>

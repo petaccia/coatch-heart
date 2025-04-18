@@ -300,3 +300,8 @@ p {
 .button-transition:active {
   transform: scale(0.95);
 }
+
+/* Effet de lueur pour les indicateurs */
+.shadow-glow {
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.6);
+}
