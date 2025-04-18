@@ -30,10 +30,10 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
         </div>
       </div>
       <div className="p-4 sm:p-6 flex-grow">
-        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2">
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-2 line-clamp-2">
           {post.title}
         </h3>
-        <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-3">
+        <p className="!text-sm  md:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">
           {post.excerpt}
         </p>
       </div>

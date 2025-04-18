@@ -10,11 +10,11 @@ import {
 
 const HeroHome = () => {
   return (
-    <section className="relative min-h-screen gradient-hero">
+    <section className="relative min-h-screen gradient-hero pt-16">
       {/* Background Pattern */}
 
       {/* Content Container */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:py-20 md:py-24 sm:px-6 lg:px-8 mobile-container">
+      <div className="relative z-10 mx-auto max-w-7xl  px-4 py-16 sm:py-20 md:py-24 sm:px-6 lg:px-8 mobile-container">
         <div className="grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-2">
           {/* Text Content */}
           <motion.div
