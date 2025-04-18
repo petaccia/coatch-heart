@@ -10,10 +10,11 @@ const FloatingElement = () => {
       }}
       transition={{ repeat: Infinity, duration: 3 }}
       className="absolute bottom-10 left-10 bg-white p-4 rounded-lg shadow-lg"
+      aria-hidden="true" // Élément décoratif qui n'apporte pas d'information essentielle
     >
       <Image
         src="/img/home/card/exercise.png"
-        alt="Exercise Card"
+        alt="Carte d'exercice d'entraînement"
         width={100}
         height={60}
         className="rounded"
