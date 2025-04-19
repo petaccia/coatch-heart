@@ -35,11 +35,11 @@
 }
 
 h1 {
-  @apply font-heading text-4xl sm:text-4xl md:text-5xl;
+  @apply mb-6 sm:mb-8 font-bold text-4xl md:text-5xl ;
 }
 
 p {
-  @apply font-body text-xl text-p;
+  @apply mb-4 sm:mb-6 text-base sm:text-lg md:text-xl;
 }
 
 .gradient {
@@ -50,7 +50,6 @@ p {
   @apply bg-gradient-to-r from-green600/10 to-blue500/10;
 }
 
-/* Mobile optimization utilities */
 
 /* Container spacing for mobile and desktop */
 .mobile-container {
@@ -76,10 +75,9 @@ p {
 }
 
 /* Typography for mobile and desktop */
+/* titles */
 .mobile-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  @apply text-2xl font-bold mb-4;
 }
 
 @media (min-width: 640px) {
@@ -94,9 +92,10 @@ p {
   }
 }
 
+/*subtitles */
+
 .mobile-subtitle {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  @apply text-2xl mb-6;
 }
 
 @media (min-width: 640px) {
@@ -121,29 +120,30 @@ p {
   }
 }
 
-/* Layout utilities */
-.mobile-text-center {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .mobile-text-center {
-    text-align: left;
+@media (min-width: 500px) {
+  .lg-w-div {
+    @apply w-full flex gap-2 lg:gap-8;
   }
 }
 
-.mobile-stack {
+@media (min-width: 500px) {
+  .lg-w-button {
+    @apply w-full text-sm lg:text-lg;
+  }
+}
+
+/* .mobile-stack {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-}
+} */
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .mobile-stack {
     flex-direction: row;
     gap: 1rem;
   }
-}
+} */
 
 .mobile-stack-reverse {
   display: flex;
@@ -169,16 +169,10 @@ p {
 }
 
 .mobile-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @apply flex flex-col items-center;
 }
 
-@media (min-width: 1024px) {
-  .mobile-center {
-    align-items: flex-start;
-  }
-}
+
 
 .mobile-space-y > * + * {
   margin-top: 1rem;
@@ -216,29 +210,22 @@ p {
   }
 }
 
-.mobile-feature-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
-}
-
 .mobile-feature-list > * + * {
   margin-top: 0.75rem;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .mobile-feature-list {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem;
-  }
+  } */
 
-  .mobile-feature-list > * + * {
+  /* .mobile-feature-list > * + * {
     margin-top: 0;
   }
-}
+} */
 
 /* Animation utilities */
 .hover-scale {

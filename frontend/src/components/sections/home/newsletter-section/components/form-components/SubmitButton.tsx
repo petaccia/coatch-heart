@@ -11,7 +11,7 @@ const SubmitButton = ({ isLoading }: SubmitButtonProps) => {
     <motion.button
       type="submit"
       disabled={isLoading}
-      className="flex-1 px-6 py-3 bg-accent text-primary font-medium rounded-lg flex items-center justify-center hover:bg-accent-dark button-transition focus-ring"
+      className="w-full mb-4 px-6 py-3 bg-accent text-primary font-medium rounded-lg flex items-center justify-center hover:bg-accent-dark button-transition focus-ring"
       aria-label="S'inscrire à la newsletter"
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}

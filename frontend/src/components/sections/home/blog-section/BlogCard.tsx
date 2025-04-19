@@ -18,7 +18,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="bg-white rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden h-full flex flex-col hover-shadow"
     >
-      <div className="relative h-48">
+      <div className="relative w-full h-96 sm:h-[32rem] md:[48rem] lg:h-72">
         <Image
           src={post.image}
           alt={post.title}
