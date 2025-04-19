@@ -34,7 +34,7 @@ const NewsletterForm = ({ isMobile = false }: NewsletterFormProps) => {
 
   return (
     <motion.div
-      className={`p-6 sm:p-8 md:p-10 lg:p-16 bg-white/10 backdrop-blur-sm flex items-center ${isMobile ? 'pb-10' : ''}`}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 h-full bg-white/10 backdrop-blur-sm flex items-center ${isMobile ? 'pb-10' : ''}`}
       initial={{ opacity: 0, x: isMobile ? 0 : 20, y: isMobile ? 20 : 0 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.8, delay: isMobile ? 0 : 0.2 }}

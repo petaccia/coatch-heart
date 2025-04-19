@@ -122,13 +122,20 @@ p {
 
 @media (min-width: 500px) {
   .lg-w-div {
-    @apply w-full flex gap-2 lg:gap-8;
+    @apply w-full flex flex-row gap-2 lg:gap-8;
   }
 }
 
 @media (min-width: 500px) {
   .lg-w-button {
-    @apply w-full text-sm lg:text-lg;
+    @apply w-full text-sm;
+  }
+}
+
+/* Styles pour les boutons */
+@media (min-width: 1024px) {
+  .lg-w-button {
+    font-size: 1.125rem;
   }
 }
 
@@ -169,7 +176,9 @@ p {
 }
 
 .mobile-center {
-  @apply flex flex-col items-center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
