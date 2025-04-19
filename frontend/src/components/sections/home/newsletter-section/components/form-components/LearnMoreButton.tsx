@@ -7,7 +7,7 @@ const LearnMoreButton = () => {
     <motion.a
       href="/newsletter-info"
       role="button"
-      className="flex-1 px-6 py-3 border border-white text-white font-medium rounded-lg hover:bg-white/10 button-transition flex items-center justify-center focus-ring-light"
+      className="flex-1 mb-4 px-6 py-3 border border-white text-white font-medium rounded-lg hover:bg-white/10 button-transition flex items-center justify-center focus-ring-light  whitespace-nowrap"
       aria-label="En savoir plus sur notre newsletter"
       whileHover={{ scale: 1.03, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
       whileTap={{ scale: 0.97 }}

@@ -52,7 +52,7 @@ const SubscriptionForm = ({ email, setEmail, error, isLoading, handleSubmit, isM
       </motion.div>
 
       <motion.div
-        className={`${isMobile ? 'mobile-stack' : 'flex flex-col sm:flex-row gap-3 sm:gap-4'}`}
+        className={`${isMobile ? 'mobile-stack' : 'flex flex-col md:flex-row gap-3 md:gap-4 md:items-center md:justify-start'}`}
         variants={itemVariants}
       >
         <SubmitButton isLoading={isLoading} />
