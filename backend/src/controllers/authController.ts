@@ -6,16 +6,16 @@ export const authController = {
   // Inscription d'un nouvel utilisateur
   async signup(req: Request, res: Response, next: NextFunction) {
     try {
-      const { name, email, password } = req.body;
-      
+      const { email, password, firstName, lastName, role, phoneNumber } = req.body;
+
       // Validation basique des données
-      if (!name || !email || !password) {
+      if (!email || !password) {
         return res.status(400).json({
           status: 'error',
-          message: 'Tous les champs sont requis: nom, email et mot de passe'
+          message: 'Email et mot de passe sont requis'
         });
       }
-      
+
       // Validation du format de l'email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
@@ -24,7 +24,7 @@ export const authController = {
           message: 'Format d\'email invalide'
         });
       }
-      
+
       // Validation de la longueur du mot de passe
       if (password.length < 8) {
         return res.status(400).json({
@@ -32,10 +32,25 @@ export const authController = {
           message: 'Le mot de passe doit contenir au moins 8 caractères'
         });
       }
-      
-      const userData: SignupData = { name, email, password };
+
+      // Validation du rôle si fourni
+      if (role && !['ADMIN', 'COACH', 'USER'].includes(role)) {
+        return res.status(400).json({
+          status: 'error',
+          message: 'Rôle invalide. Les rôles valides sont: ADMIN, COACH, USER'
+        });
+      }
+
+      const userData: SignupData = {
+        email,
+        password,
+        firstName,
+        lastName,
+        role: role as 'ADMIN' | 'COACH' | 'USER',
+        phoneNumber
+      };
       const result = await authService.signup(userData);
-      
+
       res.status(201).json({
         status: 'success',
         data: result
@@ -44,12 +59,12 @@ export const authController = {
       next(error);
     }
   },
-  
+
   // Connexion d'un utilisateur existant
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
-      
+
       // Validation basique des données
       if (!email || !password) {
         return res.status(400).json({
@@ -57,10 +72,10 @@ export const authController = {
           message: 'Email et mot de passe requis'
         });
       }
-      
+
       const loginData: LoginData = { email, password };
       const result = await authService.login(loginData);
-      
+
       res.status(200).json({
         status: 'success',
         data: result
