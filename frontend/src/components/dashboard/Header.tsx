@@ -13,15 +13,15 @@ const Header = ({ user, onOpenMobileMenu }: HeaderProps) => {
       <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <div className="flex items-center">
           {/* Bouton menu mobile */}
-          <button 
+          <button
             className="md:hidden mr-4 text-gray-500 hover:text-gray-700"
             onClick={onOpenMobileMenu}
           >
             <FiMenu className="h-6 w-6" />
           </button>
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-900">Tableau de bord</h1>
+          <h1 className="text-xl md:text-2xl md:mt-8 font-semibold text-gray-900">Tableau de bord</h1>
         </div>
-        
+
         {/* Profil utilisateur */}
         <div className="flex items-center space-x-4">
           <span className="text-sm font-medium text-gray-700">{user?.firstName || user?.email || 'Utilisateur'}</span>
