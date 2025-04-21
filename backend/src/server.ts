@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
+import session from 'express-session';
 import routes from './routes';
 import { errorHandler } from './middlewares/errorHandler';
 import config from './config';
 import { checkDatabaseConnection, checkDatabaseSchema } from './utils/dbCheck';
+import passport from './config/passport';
 
 // Initialiser l'application Express
 const app = express();
@@ -11,14 +13,30 @@ const port = config.port;
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:3000', // Autoriser les requêtes depuis le frontend
+  origin: config.frontendUrl, // Autoriser les requêtes depuis le frontend
   credentials: true // Autoriser les cookies
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configuration de la session
+app.use(session({
+  secret: config.jwtSecret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: process.env.NODE_ENV === 'production' }
+}));
+
+// Initialisation de Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes
 app.use('/api', routes);
+
+// Route directe pour l'authentification Google (si nécessaire pour correspondre à l'URL configurée dans Google Cloud)
+// Commentez ou décommentez cette ligne selon vos besoins
+// app.use('/', routes);
 
 // Middleware de gestion des erreurs
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

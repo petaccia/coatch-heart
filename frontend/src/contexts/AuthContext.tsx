@@ -12,6 +12,7 @@ interface AuthContextType {
   login: (data: LoginData) => Promise<void>;
   logout: () => void;
   clearError: () => void;
+  setUser: (user: User) => void;
 }
 
 // Création du contexte
@@ -45,12 +46,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       try {
         // Vérifier si un token existe
         const token = localStorage.getItem('token');
-        
+
         if (token) {
           // TODO: Ajouter une route pour vérifier le token et récupérer l'utilisateur
           // Pour l'instant, on simule un utilisateur connecté
           // Dans une implémentation réelle, vous devriez appeler une API pour vérifier le token
-          
+
           // Simuler un délai de chargement
           setTimeout(() => {
             setLoading(false);
@@ -72,7 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signup = async (data: SignupData) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await authService.signup(data);
       setUser(response.user);
@@ -88,7 +89,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = async (data: LoginData) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await authService.login(data);
       setUser(response.user);
@@ -112,6 +113,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setError(null);
   };
 
+  // Fonction pour définir l'utilisateur (utilisée pour l'authentification OAuth)
+  const updateUser = (userData: User) => {
+    setLoading(false);
+    setError(null);
+    setUser(userData);
+  };
+
   // Valeur du contexte
   const value = {
     user,
@@ -121,6 +129,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     login,
     logout,
     clearError,
+    setUser: updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
