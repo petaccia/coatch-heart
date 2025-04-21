@@ -6,10 +6,14 @@ export const authController = {
   // Inscription d'un nouvel utilisateur
   async signup(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log('=== DÉBUT TRAITEMENT INSCRIPTION ===');
+      console.log('Requête d\'inscription reçue:', req.body);
+      console.log('Headers:', req.headers);
       const { email, password, firstName, lastName, role, phoneNumber } = req.body;
 
       // Validation basique des données
       if (!email || !password) {
+        console.log('Validation échouée: email ou mot de passe manquant');
         return res.status(400).json({
           status: 'error',
           message: 'Email et mot de passe sont requis'
@@ -49,13 +53,25 @@ export const authController = {
         role: role as 'ADMIN' | 'COACH' | 'USER',
         phoneNumber
       };
+      console.log('Données utilisateur valides, tentative d\'inscription:', { ...userData, password: '***' });
       const result = await authService.signup(userData);
+      console.log('Inscription réussie, résultat:', { userId: result.user.id, email: result.user.email });
+
+      console.log('Réponse envoyée au client:', {
+        status: 'success',
+        userId: result.user.id,
+        email: result.user.email
+      });
+      console.log('=== FIN TRAITEMENT INSCRIPTION ===');
 
       res.status(201).json({
         status: 'success',
         data: result
       });
     } catch (error) {
+      console.log('=== ERREUR TRAITEMENT INSCRIPTION ===');
+      console.log('Erreur:', error);
+      console.log('=== FIN ERREUR TRAITEMENT INSCRIPTION ===');
       next(error);
     }
   },

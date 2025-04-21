@@ -1,6 +1,9 @@
 // Configuration de base de l'API
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
+// Pour le débogage
+console.log('API_BASE_URL:', API_BASE_URL);
+
 // Types pour l'authentification
 export interface SignupData {
   email: string;
@@ -39,36 +42,45 @@ async function fetchApi<T>(
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+
   // Récupérer le token d'authentification s'il existe
-  const token = localStorage.getItem('token');
-  
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+
   // Configuration par défaut des headers
   const headers = {
     'Content-Type': 'application/json',
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...options.headers,
   };
-  
+
   // Fusionner les options
   const config = {
     ...options,
     headers,
   };
-  
+
+  console.log(`Requête API vers ${url}:`, {
+    method: options.method || 'GET',
+    headers,
+    body: options.body ? JSON.parse(options.body as string) : undefined
+  });
+
   try {
     const response = await fetch(url, config);
-    
+
     // Vérifier si la réponse est OK
     if (!response.ok) {
       const errorData = await response.json();
+      console.error('Erreur API:', errorData);
       throw new Error(errorData.message || 'Une erreur est survenue');
     }
-    
+
     // Retourner les données
-    return await response.json();
+    const data = await response.json();
+    console.log(`Réponse API de ${url}:`, data);
+    return data;
   } catch (error) {
-    console.error('API Error:', error);
+    console.error(`Erreur lors de l'appel à ${url}:`, error);
     throw error;
   }
 }
@@ -84,13 +96,16 @@ export const authService = {
         body: JSON.stringify(data),
       }
     );
-    
+
     // Stocker le token dans le localStorage
-    localStorage.setItem('token', response.data.token);
-    
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('token', response.data.token);
+      console.log('Token stocké dans localStorage');
+    }
+
     return response.data;
   },
-  
+
   // Connexion d'un utilisateur existant
   async login(data: LoginData): Promise<AuthResponse> {
     const response = await fetchApi<{ status: string; data: AuthResponse }>(
@@ -100,26 +115,32 @@ export const authService = {
         body: JSON.stringify(data),
       }
     );
-    
+
     // Stocker le token dans le localStorage
-    localStorage.setItem('token', response.data.token);
-    
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('token', response.data.token);
+      console.log('Token stocké dans localStorage');
+    }
+
     return response.data;
   },
-  
+
   // Déconnexion
   logout(): void {
-    localStorage.removeItem('token');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+      console.log('Token supprimé du localStorage');
+    }
   },
-  
+
   // Vérifier si l'utilisateur est connecté
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    return typeof window !== 'undefined' ? !!localStorage.getItem('token') : false;
   },
-  
+
   // Récupérer le token
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   },
 };
 
