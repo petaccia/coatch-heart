@@ -1,10 +1,13 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { EmailInput, PasswordInput, SubmitButton, CheckboxInput, SocialButtonsGroup, validateLoginForm } from './form-components';
+import { useAuth } from '@/contexts/AuthContext';
 
 const LoginForm = () => {
+  const { login, loading, error: authError, clearError } = useAuth();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -16,8 +19,14 @@ const LoginForm = () => {
     general: '',
   });
 
-  const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+
+  // Effacer les erreurs d'authentification lorsque le formulaire change
+  useEffect(() => {
+    if (authError) {
+      clearError();
+    }
+  }, [formData, authError, clearError]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,25 +54,16 @@ const LoginForm = () => {
 
     if (!validateForm()) return;
 
-    setIsLoading(true);
-
-    // Simuler un appel API
+    // Appel à l'API via le contexte d'authentification
     try {
-      // Ici, vous feriez un appel à votre API pour vous connecter
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await login({
+        email: formData.email,
+        password: formData.password
+      });
 
-      // Redirection vers la page d'accueil
-      console.log('Connexion réussie', formData);
-      // window.location.href = '/dashboard';
-
+      // La redirection est gérée dans le contexte d'authentification
     } catch (error) {
       console.error('Erreur lors de la connexion', error);
-      setErrors(prev => ({
-        ...prev,
-        general: 'Email ou mot de passe incorrect'
-      }));
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -76,13 +76,13 @@ const LoginForm = () => {
       transition={{ duration: 0.3 }}
     >
       {/* Message d'erreur général */}
-      {errors.general && (
+      {(errors.general || authError) && (
         <motion.div
           className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          {errors.general}
+          {errors.general || authError}
         </motion.div>
       )}
 
@@ -131,7 +131,7 @@ const LoginForm = () => {
       {/* Bouton de soumission */}
       <div className="pt-2">
         <SubmitButton
-          isLoading={isLoading}
+          isLoading={loading}
           loadingText="Connexion en cours..."
           text="Se connecter"
         />
