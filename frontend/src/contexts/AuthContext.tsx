@@ -115,8 +115,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   // Fonction pour définir l'utilisateur (utilisée pour l'authentification OAuth)
   const updateUser = (userData: User) => {
+    console.log('Mise à jour de l\'utilisateur:', userData);
     setLoading(false);
     setError(null);
+    // Utiliser directement la fonction setState de React
     setUser(userData);
   };
 
