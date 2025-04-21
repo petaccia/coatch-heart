@@ -79,6 +79,9 @@ export const authController = {
   // Connexion d'un utilisateur existant
   async login(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log('=== DÉBUT TRAITEMENT CONNEXION ===');
+      console.log('Requête de connexion reçue:', req.body);
+      console.log('Headers:', req.headers);
       const { email, password } = req.body;
 
       // Validation basique des données
@@ -89,14 +92,26 @@ export const authController = {
         });
       }
 
+      console.log('Données de connexion valides, tentative de connexion:', { email, password: '***' });
       const loginData: LoginData = { email, password };
       const result = await authService.login(loginData);
+      console.log('Connexion réussie, résultat:', { userId: result.user.id, email: result.user.email });
+
+      console.log('Réponse envoyée au client:', {
+        status: 'success',
+        userId: result.user.id,
+        email: result.user.email
+      });
+      console.log('=== FIN TRAITEMENT CONNEXION ===');
 
       res.status(200).json({
         status: 'success',
         data: result
       });
     } catch (error) {
+      console.log('=== ERREUR TRAITEMENT CONNEXION ===');
+      console.log('Erreur:', error);
+      console.log('=== FIN ERREUR TRAITEMENT CONNEXION ===');
       next(error);
     }
   }
