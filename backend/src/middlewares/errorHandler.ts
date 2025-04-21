@@ -12,8 +12,18 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('=== ERREUR MIDDLEWARE GLOBAL ===');
+  console.error('Erreur:', err);
+  console.log('URL:', req.originalUrl);
+  console.log('Méthode:', req.method);
+
+  // Vérifier si c'est une erreur d'authentification
+  if (err.name === 'AuthenticationError' || err.message.includes('authentication') || err.message.includes('Unauthorized')) {
+    console.log('Erreur d\'authentification détectée');
+  }
+
   const statusCode = err.statusCode || 500;
-  
+
   res.status(statusCode).json({
     status: 'error',
     statusCode,
