@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { EmailInput, PasswordInput, SubmitButton, CheckboxInput, SocialButtonsGroup, validateLoginForm } from './form-components';
 import { useAuth } from '@/contexts/AuthContext';
+import { WelcomeBackAnimation } from '@/components/animations';
 
 const LoginForm = () => {
-  const { login, loading, error: authError, clearError } = useAuth();
+  const { login, loading, error: authError, clearError, user } = useAuth();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -20,6 +21,8 @@ const LoginForm = () => {
   });
 
   const [rememberMe, setRememberMe] = useState(false);
+  const [showWelcomeAnimation, setShowWelcomeAnimation] = useState(false);
+  const [loginComplete, setLoginComplete] = useState(false);
 
   // Effacer les erreurs d'authentification lorsque le formulaire change
   useEffect(() => {
@@ -61,20 +64,37 @@ const LoginForm = () => {
         password: formData.password
       });
 
-      // La redirection est gérée dans le contexte d'authentification
+      // Afficher l'animation de bienvenue
+      setShowWelcomeAnimation(true);
+
+      // La redirection est gérée dans le contexte d'authentification après l'animation
     } catch (error) {
       console.error('Erreur lors de la connexion', error);
     }
   };
 
+  // Fonction pour gérer la fin de l'animation
+  const handleAnimationComplete = () => {
+    setShowWelcomeAnimation(false);
+    setLoginComplete(true);
+  };
+
   return (
-    <motion.form
-      onSubmit={handleSubmit}
-      className="space-y-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-    >
+    <>
+      {showWelcomeAnimation && (
+        <WelcomeBackAnimation
+          userName={user?.firstName || 'utilisateur'}
+          onComplete={handleAnimationComplete}
+        />
+      )}
+
+      <motion.form
+        onSubmit={handleSubmit}
+        className="space-y-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
       {/* Message d'erreur général */}
       {(errors.general || authError) && (
         <motion.div
@@ -140,6 +160,7 @@ const LoginForm = () => {
       {/* Boutons sociaux */}
       <SocialButtonsGroup />
     </motion.form>
+    </>
   );
 };
 

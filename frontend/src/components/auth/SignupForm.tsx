@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TextInput, EmailInput, PasswordInput, SubmitButton, SocialButtonsGroup, validateSignupForm } from './form-components';
 import { useAuth } from '@/contexts/AuthContext';
+import { WelcomeAnimation } from '@/components/animations';
 
 const SignupForm = () => {
   const { signup, loading, error: authError, clearError } = useAuth();
@@ -22,6 +23,9 @@ const SignupForm = () => {
     password: '',
     confirmPassword: '',
   });
+
+  const [showWelcomeAnimation, setShowWelcomeAnimation] = useState(false);
+  const [registrationComplete, setRegistrationComplete] = useState(false);
 
   // Effacer les erreurs d'authentification lorsque le formulaire change
   useEffect(() => {
@@ -60,20 +64,37 @@ const SignupForm = () => {
         lastName: formData.lastName
       });
 
-      // La redirection est gérée dans le contexte d'authentification
+      // Afficher l'animation de bienvenue
+      setShowWelcomeAnimation(true);
+
+      // La redirection est gérée dans le contexte d'authentification après l'animation
     } catch (error) {
       console.error('Erreur lors de l\'inscription', error);
     }
   };
 
+  // Fonction pour gérer la fin de l'animation
+  const handleAnimationComplete = () => {
+    setShowWelcomeAnimation(false);
+    setRegistrationComplete(true);
+  };
+
   return (
-    <motion.form
-      onSubmit={handleSubmit}
-      className="space-y-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-    >
+    <>
+      {showWelcomeAnimation && (
+        <WelcomeAnimation
+          userName={formData.firstName || 'nouvel utilisateur'}
+          onComplete={handleAnimationComplete}
+        />
+      )}
+
+      <motion.form
+        onSubmit={handleSubmit}
+        className="space-y-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
       {/* Prénom */}
       <TextInput
         id="firstName"
@@ -169,6 +190,7 @@ const SignupForm = () => {
       {/* Boutons sociaux */}
       <SocialButtonsGroup />
     </motion.form>
+    </>
   );
 };
 
