@@ -6,9 +6,12 @@ import { createError } from '../middlewares/errorHandler';
 
 // Interface pour les données d'inscription
 export interface SignupData {
-  name: string;
   email: string;
   password: string;
+  firstName?: string;
+  lastName?: string;
+  role?: 'ADMIN' | 'COACH' | 'USER';
+  phoneNumber?: string;
 }
 
 // Interface pour les données de connexion
@@ -21,7 +24,7 @@ export interface LoginData {
 export const authService = {
   // Inscription d'un nouvel utilisateur
   async signup(data: SignupData) {
-    const { name, email, password } = data;
+    const { email, password, firstName, lastName, role, phoneNumber } = data;
 
     // Vérifier si l'email existe déjà
     const existingUser = await prisma.user.findUnique({
@@ -38,9 +41,12 @@ export const authService = {
     // Créer l'utilisateur
     const user = await prisma.user.create({
       data: {
-        name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        firstName,
+        lastName,
+        role: role as any, // Conversion nécessaire pour TypeScript
+        phoneNumber
       }
     });
 
@@ -52,12 +58,22 @@ export const authService = {
       signOptions
     );
 
+    // Mettre à jour la date de dernière connexion
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() }
+    });
+
     // Retourner les informations de l'utilisateur (sans le mot de passe) et le token
     return {
       user: {
         id: user.id,
-        name: user.name,
         email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        profilePicture: user.profilePicture,
+        phoneNumber: user.phoneNumber,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt
       },
@@ -93,12 +109,22 @@ export const authService = {
       signOptions
     );
 
+    // Mettre à jour la date de dernière connexion
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() }
+    });
+
     // Retourner les informations de l'utilisateur (sans le mot de passe) et le token
     return {
       user: {
         id: user.id,
-        name: user.name,
         email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        profilePicture: user.profilePicture,
+        phoneNumber: user.phoneNumber,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt
       },
