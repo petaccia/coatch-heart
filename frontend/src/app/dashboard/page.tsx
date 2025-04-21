@@ -215,52 +215,70 @@ const DashboardPage = () => {
           {/* Contenu principal */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Activité récente */}
-            <div className="lg:col-span-2 bg-white rounded-xl shadow-sm p-6 border border-indigo-100 hover:shadow-md transition-shadow">
+            <div className="lg:col-span-2 bg-gradient-to-br from-white to-indigo-50 rounded-xl shadow-sm p-6 border border-indigo-100 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center"><span className="bg-indigo-100 text-indigo-600 p-1 rounded-md mr-2"><FiActivity className="h-5 w-5" /></span>Activité récente</h2>
-                <button className="text-sm text-primary hover:text-primary-dark transition-colors">
-                  Voir tout
+                <button className="text-sm bg-indigo-50 text-primary hover:bg-indigo-100 px-3 py-1 rounded transition-colors flex items-center">
+                  <span>Voir tout</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
                 </button>
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="p-2 rounded-full bg-blue-100 text-blue-600 mr-4 shadow-sm">
-                    <FiCalendar className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Séance d'entraînement créée</p>
-                    <p className="text-sm text-gray-500">Vous avez créé une nouvelle séance pour l'équipe Junior.</p>
-                    <p className="text-xs text-gray-400 mt-1">Il y a 2 heures</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="p-2 rounded-full bg-green-100 text-green-600 mr-4 shadow-sm">
-                    <FiUsers className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Nouveau membre</p>
-                    <p className="text-sm text-gray-500">Thomas Dubois a rejoint l'équipe Senior.</p>
-                    <p className="text-xs text-gray-400 mt-1">Il y a 1 jour</p>
+                <div className="bg-white border-l-4 border-blue-400 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start">
+                    <div className="p-2 rounded-full bg-blue-100 text-blue-600 mr-4 shadow-sm">
+                      <FiCalendar className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">Séance d'entraînement créée</p>
+                      <p className="text-sm text-gray-500">Vous avez créé une nouvelle séance pour l'équipe Junior.</p>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-xs text-gray-400">Il y a 2 heures</p>
+                        <button className="text-xs bg-blue-50 text-blue-500 hover:bg-blue-100 px-2 py-1 rounded transition-colors w-24 text-center">Voir détails</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <div className="p-2 rounded-full bg-purple-100 text-purple-600 mr-4 shadow-sm">
-                    <FiActivity className="h-5 w-5" />
+                <div className="bg-white border-l-4 border-green-400 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start">
+                    <div className="p-2 rounded-full bg-green-100 text-green-600 mr-4 shadow-sm">
+                      <FiUsers className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">Nouveau membre</p>
+                      <p className="text-sm text-gray-500">Thomas Dubois a rejoint l'équipe Senior.</p>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-xs text-gray-400">Il y a 1 jour</p>
+                        <button className="text-xs bg-green-50 text-green-500 hover:bg-green-100 px-2 py-1 rounded transition-colors w-24 text-center">Voir profil</button>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Exercice terminé</p>
-                    <p className="text-sm text-gray-500">L'équipe Junior a terminé l'exercice de passes.</p>
-                    <p className="text-xs text-gray-400 mt-1">Il y a 2 jours</p>
+                </div>
+
+                <div className="bg-white border-l-4 border-purple-400 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start">
+                    <div className="p-2 rounded-full bg-purple-100 text-purple-600 mr-4 shadow-sm">
+                      <FiActivity className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">Exercice terminé</p>
+                      <p className="text-sm text-gray-500">L'équipe Junior a terminé l'exercice de passes.</p>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-xs text-gray-400">Il y a 2 jours</p>
+                        <button className="text-xs bg-purple-50 text-purple-500 hover:bg-purple-100 px-2 py-1 rounded transition-colors w-24 text-center">Voir résultats</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Actions rapides */}
-            <div className="bg-white rounded-xl shadow-sm p-6 border border-indigo-100 hover:shadow-md transition-shadow">
+            <div className="bg-gradient-to-br from-white to-indigo-50 rounded-xl shadow-sm p-6 border border-indigo-100 hover:shadow-md transition-shadow">
               <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center"><span className="bg-indigo-100 text-indigo-600 p-1 rounded-md mr-2"><FiPlus className="h-5 w-5" /></span>Actions rapides</h2>
 
               <div className="space-y-4">
