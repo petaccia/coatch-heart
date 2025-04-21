@@ -131,40 +131,57 @@ export const authService = {
 
   // Connexion d'un utilisateur existant
   async login(data: LoginData) {
+    console.log('=== DÉBUT SERVICE CONNEXION ===');
     const { email, password } = data;
+    console.log('Données reçues par le service:', { email, password: '***' });
 
     // Rechercher l'utilisateur par email
+    console.log('Recherche de l\'utilisateur par email:', email);
     const user = await prisma.user.findUnique({
       where: { email }
     });
 
     if (!user) {
+      console.log('Utilisateur non trouvé avec l\'email:', email);
       throw createError('Email ou mot de passe incorrect', 401);
     }
 
+    console.log('Utilisateur trouvé, ID:', user.id);
+
     // Vérifier le mot de passe
+    console.log('Vérification du mot de passe pour l\'utilisateur:', user.id);
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
+      console.log('Mot de passe invalide pour l\'utilisateur:', user.id);
       throw createError('Email ou mot de passe incorrect', 401);
     }
 
+    console.log('Mot de passe valide pour l\'utilisateur:', user.id);
+
     // Générer un token JWT
+    console.log('Génération du token JWT pour l\'utilisateur:', user.id);
     const signOptions: SignOptions = { expiresIn: config.jwtExpiresIn };
+    console.log('Options JWT:', { expiresIn: config.jwtExpiresIn });
+
     const token = jwt.sign(
       { id: user.id, email: user.email },
       config.jwtSecret as jwt.Secret,
       signOptions
     );
+    console.log('Token JWT généré avec succès');
 
     // Mettre à jour la date de dernière connexion
+    console.log('Mise à jour de la date de dernière connexion pour l\'utilisateur:', user.id);
     await prisma.user.update({
       where: { id: user.id },
       data: { lastLogin: new Date() }
     });
+    console.log('Date de dernière connexion mise à jour avec succès');
 
     // Retourner les informations de l'utilisateur (sans le mot de passe) et le token
-    return {
+    console.log('Préparation de la réponse pour le client');
+    const response = {
       user: {
         id: user.id,
         email: user.email,
@@ -178,5 +195,8 @@ export const authService = {
       },
       token
     };
+    console.log('Réponse prête à être envoyée:', { userId: response.user.id, email: response.user.email });
+    console.log('=== FIN SERVICE CONNEXION ===');
+    return response;
   }
 };
