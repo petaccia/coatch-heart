@@ -25,7 +25,7 @@ const Header = ({ user, onOpenMobileMenu }: HeaderProps) => {
         {/* Profil utilisateur */}
         <div className="flex items-center space-x-4">
           <span className="text-sm font-medium text-gray-700">{user?.firstName || user?.email || 'Utilisateur'}</span>
-          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white shadow-md">
+          <div className="h-10 w-10 rounded-full bg-gray-900 flex items-center justify-center text-white shadow-md">
             {user?.firstName ? user.firstName[0].toUpperCase() : 'U'}
           </div>
         </div>
