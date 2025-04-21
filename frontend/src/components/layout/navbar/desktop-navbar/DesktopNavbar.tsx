@@ -83,14 +83,23 @@ const DesktopNavbar = () => {
 
           {/* Boutons d'action */}
           <div className="flex items-center space-x-4">
+            <div className="flex items-center">
+              <Link
+                href="/login"
+                className="text-sm font-medium text-white hover:text-accent transition-colors duration-200 hover-scale-sm"
+              >
+                Connexion
+              </Link>
+              <span className="text-white/50 mx-2">/</span>
+              <Link
+                href="/signup"
+                className="text-sm font-medium text-white hover:text-accent transition-colors duration-200 hover-scale-sm"
+              >
+                Inscription
+              </Link>
+            </div>
             <Link
-              href="/login"
-              className="text-sm font-medium text-white hover:text-accent transition-colors duration-200 hover-scale-sm"
-            >
-              Connexion
-            </Link>
-            <Link
-              href="/signup"
+              href="/try-free"
               className="text-sm font-medium text-primary bg-accent hover:bg-accent/90 px-4 py-2 rounded-full transition-colors duration-200 button-transition focus-ring"
             >
               Essayer gratuitement
