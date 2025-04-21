@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat, Raleway, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -41,11 +42,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${montserrat.variable} ${raleway.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <main className="min-h-screen pt-0 lg:pt-16 pb-16 lg:pb-0">
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="min-h-screen pt-0 lg:pt-16 pb-16 lg:pb-0">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

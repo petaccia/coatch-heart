@@ -1,24 +1,34 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TextInput, EmailInput, PasswordInput, SubmitButton, SocialButtonsGroup, validateSignupForm } from './form-components';
+import { useAuth } from '@/contexts/AuthContext';
 
 const SignupForm = () => {
+  const { signup, loading, error: authError, clearError } = useAuth();
+
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
   const [errors, setErrors] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  // Effacer les erreurs d'authentification lorsque le formulaire change
+  useEffect(() => {
+    if (authError) {
+      clearError();
+    }
+  }, [formData, authError, clearError]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,21 +51,18 @@ const SignupForm = () => {
 
     if (!validateForm()) return;
 
-    setIsLoading(true);
-
-    // Simuler un appel API
+    // Appel à l'API via le contexte d'authentification
     try {
-      // Ici, vous feriez un appel à votre API pour créer un compte
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await signup({
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName
+      });
 
-      // Redirection vers la page d'accueil ou de connexion
-      console.log('Inscription réussie', formData);
-      // window.location.href = '/login';
-
+      // La redirection est gérée dans le contexte d'authentification
     } catch (error) {
       console.error('Erreur lors de l\'inscription', error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -67,14 +74,26 @@ const SignupForm = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
+      {/* Prénom */}
+      <TextInput
+        id="firstName"
+        name="firstName"
+        label="Prénom"
+        value={formData.firstName}
+        placeholder="Entrez votre prénom"
+        error={errors.firstName}
+        onChange={handleChange}
+        required
+      />
+
       {/* Nom */}
       <TextInput
-        id="name"
-        name="name"
-        label="Nom complet"
-        value={formData.name}
+        id="lastName"
+        name="lastName"
+        label="Nom"
+        value={formData.lastName}
         placeholder="Entrez votre nom"
-        error={errors.name}
+        error={errors.lastName}
         onChange={handleChange}
         required
       />
@@ -115,10 +134,21 @@ const SignupForm = () => {
         required
       />
 
+      {/* Message d'erreur d'authentification */}
+      {authError && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-red-50 p-3 rounded-lg border border-red-200 text-red-600 text-sm"
+        >
+          {authError}
+        </motion.div>
+      )}
+
       {/* Bouton de soumission */}
       <div className="pt-2">
         <SubmitButton
-          isLoading={isLoading}
+          isLoading={loading}
           loadingText="Création en cours..."
           text="Créer mon compte"
         />
