@@ -10,7 +10,10 @@ const config = {
   jwtSecret: process.env.JWT_SECRET || 'default_jwt_secret',
   jwtExpiresIn: '1d' as const,
   bcryptSaltRounds: 10,
-  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000'
+  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
+  googleClientId: process.env.GOOGLE_CLIENT_ID || '',
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+  oauthCallbackUrl: process.env.OAUTH_CALLBACK_URL || 'http://localhost:3001/api/auth/google/callback'
 };
 
 export default config;
