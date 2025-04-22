@@ -9,7 +9,8 @@ const config = {
   port: process.env.PORT || 3001,
   jwtSecret: process.env.JWT_SECRET || 'default_jwt_secret',
   jwtExpiresIn: '1d' as const,
-  bcryptSaltRounds: 10
+  bcryptSaltRounds: 10,
+  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000'
 };
 
 export default config;
