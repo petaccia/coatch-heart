@@ -14,28 +14,24 @@ datasource db {
 }
 
 model User {
-  id              Int       @id @default(autoincrement())
-  email           String    @unique
-  password        String
-  firstName       String?
-  lastName        String?
-  role            Role      @default(USER)
-  profilePicture  String?
-  bio             String?
-  phoneNumber     String?
-  isEmailVerified Boolean   @default(false)
-  verificationToken String?
-  resetPasswordToken String?
-  resetPasswordExpires DateTime?
-  lastLogin       DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  password       String?
+  firstName      String?
+  lastName       String?
+  profilePicture String?
+  phoneNumber    String?
+  role           Role      @default(USER)
+  isEmailVerified Boolean  @default(false)
+  lastLogin      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  
   // Relations
-  sessions        Session[]
+  sessions         Session[]
   trainingSessions TrainingSession[]
-  exercises       Exercise[]
-  teams           Team[]
+  exercises        Exercise[]
+  teams           Team[]          @relation("CoachTeams")
 }
 
 model Session {
@@ -45,84 +41,82 @@ model Session {
   expiresAt DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  
   // Relations
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model TrainingSession {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   description String?
-  duration    Int       // durée en minutes
+  duration    Int
   date        DateTime?
   userId      Int
   teamId      Int?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
   // Relations
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  team        Team?     @relation(fields: [teamId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   exercises   TrainingSessionExercise[]
 }
 
 model Exercise {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   description String?
   category    String?
   difficulty  String?
-  duration    Int?      // durée en minutes
+  duration    Int?
   equipment   String?
   imageUrl    String?
   videoUrl    String?
-  isPublic    Boolean   @default(false)
+  isPublic    Boolean  @default(false)
   userId      Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
   // Relations
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   trainingSessions TrainingSessionExercise[]
 }
 
 model TrainingSessionExercise {
-  id               Int       @id @default(autoincrement())
+  id               Int      @id @default(autoincrement())
   trainingSessionId Int
   exerciseId       Int
   order            Int
-  duration         Int?      // durée en minutes
+  duration         Int?
   repetitions      Int?
   sets             Int?
   notes            String?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
   // Relations
   trainingSession  TrainingSession @relation(fields: [trainingSessionId], references: [id], onDelete: Cascade)
-  exercise         Exercise  @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
-
+  exercise         Exercise        @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  
   @@unique([trainingSessionId, exerciseId, order])
 }
 
 model Team {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String?
   sport       String?
   ageGroup    String?
   coachId     Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
   // Relations
-  coach       User      @relation(fields: [coachId], references: [id], onDelete: Cascade)
-  trainingSessions TrainingSession[]
+  coach       User     @relation("CoachTeams", fields: [coachId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
+  USER
   ADMIN
   COACH
-  USER
 }

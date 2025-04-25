@@ -13,7 +13,10 @@ const config = {
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
   googleClientId: process.env.GOOGLE_CLIENT_ID || '',
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-  oauthCallbackUrl: process.env.OAUTH_CALLBACK_URL || 'http://localhost:3001/api/auth/google/callback'
+  oauthCallbackUrl: process.env.OAUTH_CALLBACK_URL || 'http://localhost:3001/api/auth/google/callback',
+  facebookClientId: process.env.FACEBOOK_CLIENT_ID || '',
+  facebookClientSecret: process.env.FACEBOOK_CLIENT_SECRET || '',
+  facebookCallbackUrl: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3001/api/auth/facebook/callback'
 };
 
 export default config;

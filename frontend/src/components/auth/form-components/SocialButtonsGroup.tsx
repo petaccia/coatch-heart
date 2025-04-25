@@ -7,6 +7,12 @@ const SocialButtonsGroup = () => {
     // Rediriger vers l'API d'authentification Google
     window.location.href = 'http://localhost:3001/api/auth/google';
   };
+
+  const handleFacebookLogin = () => {
+    // Rediriger vers l'API d'authentification Facebook
+    window.location.href = 'http://localhost:3001/api/auth/facebook';
+  };
+
   return (
     <>
       {/* Séparateur */}
@@ -40,7 +46,7 @@ const SocialButtonsGroup = () => {
             </svg>
           }
           text="Facebook"
-          onClick={() => console.log('Facebook login')}
+          onClick={handleFacebookLogin}
         />
       </div>
     </>

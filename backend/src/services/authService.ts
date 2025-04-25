@@ -138,15 +138,21 @@ export const authService = {
     // Rechercher l'utilisateur par email
     console.log('Recherche de l\'utilisateur par email:', email);
     const user = await prisma.user.findUnique({
-      where: { email }
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        password: true,
+        role: true,
+        firstName: true,
+        lastName: true
+      }
     });
 
-    if (!user) {
-      console.log('Utilisateur non trouvé avec l\'email:', email);
+    if (!user || !user.password) {
+      console.log('Utilisateur non trouvé ou mot de passe non défini');
       throw createError('Email ou mot de passe incorrect', 401);
     }
-
-    console.log('Utilisateur trouvé, ID:', user.id);
 
     // Vérifier le mot de passe
     console.log('Vérification du mot de passe pour l\'utilisateur:', user.id);
@@ -161,42 +167,29 @@ export const authService = {
 
     // Générer un token JWT
     console.log('Génération du token JWT pour l\'utilisateur:', user.id);
-    const signOptions: SignOptions = { expiresIn: config.jwtExpiresIn };
-    console.log('Options JWT:', { expiresIn: config.jwtExpiresIn });
+    const signOptions: SignOptions = { expiresIn: '24h' };
 
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      config.jwtSecret as jwt.Secret,
+      config.jwtSecret,
       signOptions
     );
-    console.log('Token JWT généré avec succès');
 
     // Mettre à jour la date de dernière connexion
-    console.log('Mise à jour de la date de dernière connexion pour l\'utilisateur:', user.id);
     await prisma.user.update({
       where: { id: user.id },
       data: { lastLogin: new Date() }
     });
-    console.log('Date de dernière connexion mise à jour avec succès');
 
-    // Retourner les informations de l'utilisateur (sans le mot de passe) et le token
-    console.log('Préparation de la réponse pour le client');
-    const response = {
+    return {
       user: {
         id: user.id,
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
         role: user.role,
-        profilePicture: user.profilePicture,
-        phoneNumber: user.phoneNumber,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt
+        firstName: user.firstName,
+        lastName: user.lastName
       },
       token
     };
-    console.log('Réponse prête à être envoyée:', { userId: response.user.id, email: response.user.email });
-    console.log('=== FIN SERVICE CONNEXION ===');
-    return response;
   }
 };
