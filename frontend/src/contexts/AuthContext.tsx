@@ -1,7 +1,8 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import { authService, SignupData, LoginData } from '@/services/api';
+import { authService } from '@/services/authService';
+import { SignupData, LoginData } from '@/types/auth';
 import { User } from '@/types/user';
 
 // Interface pour le contexte d'authentification
