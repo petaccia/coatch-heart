@@ -85,8 +85,16 @@ export const authService = {
       const signOptions: SignOptions = { expiresIn: config.jwtExpiresIn };
       console.log('Options JWT:', { expiresIn: config.jwtExpiresIn });
 
+      // Génération du token avec ID converti en string
       const token = jwt.sign(
-        { id: user.id, email: user.email },
+        {
+          id: user.id.toString(),
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
+          phoneNumber: user.phoneNumber
+        },
         config.jwtSecret as jwt.Secret,
         signOptions
       );
@@ -137,6 +145,7 @@ export const authService = {
 
     // Rechercher l'utilisateur par email
     console.log('Recherche de l\'utilisateur par email:', email);
+    // Dans la méthode login
     const user = await prisma.user.findUnique({
       where: { email },
       select: {
@@ -145,7 +154,8 @@ export const authService = {
         password: true,
         role: true,
         firstName: true,
-        lastName: true
+        lastName: true,
+        phoneNumber: true
       }
     });
 
@@ -170,7 +180,14 @@ export const authService = {
     const signOptions: SignOptions = { expiresIn: '24h' };
 
     const token = jwt.sign(
-      { id: user.id, email: user.email },
+      {
+        id: user.id.toString(),
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        phoneNumber: user.phoneNumber
+      },
       config.jwtSecret,
       signOptions
     );

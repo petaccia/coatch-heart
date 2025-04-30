@@ -1,40 +1,12 @@
+// Import des types d'authentification
+import { SignupData, LoginData, AuthResponse } from '../types/auth';
+import { User } from '../types/user';
+
 // Configuration de base de l'API
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 // Pour le débogage
 console.log('API_BASE_URL:', API_BASE_URL);
-
-// Types pour l'authentification
-export interface SignupData {
-  email: string;
-  password: string;
-  firstName?: string;
-  lastName?: string;
-  role?: 'ADMIN' | 'COACH' | 'USER';
-  phoneNumber?: string;
-}
-
-export interface LoginData {
-  email: string;
-  password: string;
-}
-
-export interface User {
-  id: number;
-  email: string;
-  firstName: string | null;
-  lastName: string | null;
-  role: string;
-  profilePicture: string | null;
-  phoneNumber: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface AuthResponse {
-  user: User;
-  token: string;
-}
 
 // Fonction utilitaire pour les requêtes API
 async function fetchApi<T>(
@@ -108,7 +80,10 @@ export const authService = {
 
   // Connexion d'un utilisateur existant
   async login(data: LoginData): Promise<AuthResponse> {
-    const response = await fetchApi<{ status: string; data: AuthResponse }>(
+    const response = await fetchApi<{
+      status: string;
+      data: AuthResponse;
+    }>(
       '/auth/login',
       {
         method: 'POST',

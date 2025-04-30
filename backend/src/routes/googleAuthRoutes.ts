@@ -39,7 +39,14 @@ router.get(
       console.log('Utilisateur authentifié:', { id: user.id, email: user.email });
 
       const token = jwt.sign(
-        { id: user.id, email: user.email },
+        { 
+          id: user.id.toString(), 
+          email: user.email,
+          role: user.role,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phoneNumber: user.phoneNumber 
+        },
         config.jwtSecret as jwt.Secret,
         { expiresIn: config.jwtExpiresIn }
       );
