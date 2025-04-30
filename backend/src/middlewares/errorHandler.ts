@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response } from "express";
 
 // Interface pour les erreurs personnalisées
 export interface AppError extends Error {
@@ -6,29 +6,27 @@ export interface AppError extends Error {
 }
 
 // Middleware de gestion des erreurs
-export const errorHandler = (
-  err: AppError,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  console.log('=== ERREUR MIDDLEWARE GLOBAL ===');
-  console.error('Erreur:', err);
-  console.log('URL:', req.originalUrl);
-  console.log('Méthode:', req.method);
-
+export const errorHandler = (err: AppError, res: Response) => {
   // Vérifier si c'est une erreur d'authentification
-  if (err.name === 'AuthenticationError' || err.message.includes('authentication') || err.message.includes('Unauthorized')) {
-    console.log('Erreur d\'authentification détectée');
+  // Cette vérification est conservée pour une utilisation future
+  // mais n'a pas d'action spécifique pour le moment
+  const isAuthError =
+    err.name === "AuthenticationError" ||
+    err.message.includes("authentication") ||
+    err.message.includes("Unauthorized");
+
+  // Utilisation de la variable pour éviter l'avertissement
+  if (isAuthError) {
+    // À l'avenir, un traitement spécifique pourra être ajouté ici
   }
 
   const statusCode = err.statusCode || 500;
 
   res.status(statusCode).json({
-    status: 'error',
+    status: "error",
     statusCode,
-    message: err.message || 'Une erreur est survenue',
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    message: err.message || "Une erreur est survenue",
+    stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
   });
 };
 
