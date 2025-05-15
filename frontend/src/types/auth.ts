@@ -6,7 +6,7 @@ export interface SignupData {
   password: string;
   firstName?: string;
   lastName?: string;
-  role?: 'ADMIN' | 'COACH' | 'USER';
+
   phoneNumber?: string;
 }
 

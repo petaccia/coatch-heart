@@ -6,8 +6,16 @@ export const authController = {
   // Inscription d'un nouvel utilisateur
   async signup(req: Request, res: Response, next: NextFunction) {
     try {
-      const { email, password, firstName, lastName, role, phoneNumber } =
+      const { email, password, passwordConfirmation, firstName, lastName, phoneNumber } =
         req.body;
+
+      // Vérification de la correspondance des mots de passe
+      if (password !== passwordConfirmation) {
+        return res.status(400).json({
+          status: "error",
+          message: "Les mots de passe ne correspondent pas",
+        });
+      }
 
       // Validation basique des données
       if (!email || !password) {
@@ -34,20 +42,12 @@ export const authController = {
         });
       }
 
-      // Validation du rôle si fourni
-      if (role && !["ADMIN", "COACH", "USER"].includes(role)) {
-        return res.status(400).json({
-          status: "error",
-          message: "Rôle invalide. Les rôles valides sont: ADMIN, COACH, USER",
-        });
-      }
-
       const userData: SignupData = {
         email,
         password,
         firstName,
         lastName,
-        role: role as "ADMIN" | "COACH" | "USER",
+
         phoneNumber,
       };
       const result = await authService.signup(userData);
