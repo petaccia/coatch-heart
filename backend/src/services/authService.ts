@@ -22,6 +22,18 @@ export interface LoginData {
 
 // Service d'authentification
 export const authService = {
+  // Génération de token JWT
+  generateToken(user: any): string {
+    return jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        role: user.role
+      },
+      config.jwtSecret,
+      { expiresIn: '1h' } as SignOptions
+    );
+  },
   // Inscription d'un nouvel utilisateur
   async signup(data: SignupData) {
     const { email, password, firstName, lastName, role, phoneNumber } = data;
@@ -37,9 +49,6 @@ export const authService = {
 
     // Hasher le mot de passe
     const hashedPassword = await bcrypt.hash(password, config.bcryptSaltRounds);
-
-    // Créer l'utilisateur
-
     try {
       // Créer l'utilisateur
 
@@ -163,6 +172,44 @@ export const authService = {
         lastName: user.lastName,
       },
       token,
+    };
+  },
+
+  // Recherche ou création d'un utilisateur via un provider social
+  async findOrCreateSocialUser({ email, firstName, lastName, provider }: { email: string; firstName?: string; lastName?: string; provider: string }) {
+    // Vérifier si l'utilisateur existe déjà
+    let user = await prisma.user.findUnique({
+      where: { email },
+    });
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          email,
+          firstName,
+          lastName,
+          provider,
+          // On peut définir un rôle par défaut pour les utilisateurs sociaux
+          role: "USER",
+        },
+      });
+    }
+    // Mettre à jour la date de dernière connexion
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() },
+    });
+    // Retourner l'utilisateur sans le mot de passe
+    return {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      profilePicture: user.profilePicture,
+      phoneNumber: user.phoneNumber,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      provider: user.provider,
     };
   },
 };

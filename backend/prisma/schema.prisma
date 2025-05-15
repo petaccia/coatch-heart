@@ -21,6 +21,7 @@ model User {
   lastName       String?
   profilePicture String?
   phoneNumber    String?
+  provider       String?
   role           Role      @default(USER)
   isEmailVerified Boolean  @default(false)
   lastLogin      DateTime?
