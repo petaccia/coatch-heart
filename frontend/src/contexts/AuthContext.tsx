@@ -79,7 +79,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const response = await authService.signup(data);
       setUser(response.user);
-      router.push('/dashboard'); // Rediriger vers le tableau de bord après l'inscription
     } catch (err: any) {
       setError(err.message || 'Erreur lors de l\'inscription');
     } finally {
@@ -95,7 +94,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const response = await authService.login(data);
       setUser(response.user);
-      router.push('/dashboard'); // Rediriger vers le tableau de bord après la connexion
     } catch (err: any) {
       setError(err.message || 'Erreur lors de la connexion');
     } finally {

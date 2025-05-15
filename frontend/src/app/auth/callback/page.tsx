@@ -50,7 +50,7 @@ const AuthCallbackPage = () => {
 
         // Rediriger vers le tableau de bord après un court délai
         setTimeout(() => {
-          router.push('/dashboard');
+          router.push('/');
         }, 100);
       } catch (error) {
         console.error('Erreur lors du traitement du token:', error);
